@@ -27,6 +27,9 @@ class AgendaController {
     }
     getByUserId(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             const { id } = req.params;
             const [agenda] = yield database_1.default.promise().query('SELECT reuniones.nombre, reuniones.fecha FROM reuniones ' +
                 'INNER JOIN participantes on participantes.reunion_id = reuniones.id INNER JOIN usuarios on participantes.usuario_id = usuarios.id ' +

@@ -17,6 +17,9 @@ const database_1 = __importDefault(require("../database"));
 class MeetController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             try {
                 // extraer los valores recibidos del frontend
                 console.log(req.body);

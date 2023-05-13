@@ -20,50 +20,68 @@ class UserController {
     }
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [users] = yield database_1.default.promise().query('SELECT * FROM usuarios');
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            const [users] = yield database_1.default.promise().query("SELECT * FROM usuarios");
             console.log(users);
             res.json(users);
         });
     }
     auth(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             console.log(req.body);
             const { username, password } = req.body;
-            const [users] = yield database_1.default.promise().query('SELECT * FROM usuarios WHERE nombre = ? AND password = ?', [username, password]);
+            const [users] = yield database_1.default
+                .promise()
+                .query("SELECT * FROM usuarios WHERE nombre = ? AND password = ?", [
+                username,
+                password,
+            ]);
             console.log(users);
             res.json(users);
         });
     }
     getByUsername(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             const { user } = req.params;
             try {
-                const [users] = yield database_1.default.promise().query('SELECT * FROM usuarios WHERE nombre = ?', [user]);
+                const [users] = yield database_1.default
+                    .promise()
+                    .query("SELECT * FROM usuarios WHERE nombre = ?", [user]);
                 if (users.length > 0) {
                     res.json(users[0]);
                 }
                 else {
-                    res.status(404).json({ message: 'Usuario no encontrado' });
+                    res.status(404).json({ message: "Usuario no encontrado" });
                 }
             }
             catch (error) {
                 console.log(error);
-                res.status(500).json({ message: 'Error al buscar el usuario' });
+                res.status(500).json({ message: "Error al buscar el usuario" });
             }
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.promise().query('INSERT INTO usuarios set ?', [req.body]);
-            res.json({ message: 'Usuario creado' });
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            yield database_1.default.promise().query("INSERT INTO usuarios set ?", [req.body]);
+            res.json({ message: "Usuario creado" });
         });
     }
-    ;
     put(req, res) {
-        res.json({ text: 'Actualizando la meet numero: ' + req.params.id });
+        res.json({ text: "Actualizando la meet numero: " + req.params.id });
     }
     delete(req, res) {
-        res.json({ text: 'Eliminando la meet numero: ' + req.params.id });
+        res.json({ text: "Eliminando la meet numero: " + req.params.id });
     }
 }
 exports.userController = new UserController();

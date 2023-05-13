@@ -5,7 +5,7 @@ export default {
     
     database: {
         
-        user: 'mlhzkgpaavt12vcdw75f',
+        user: 'w40fcbfo317dkbo5euys',
         host: 'aws.connect.psdb.cloud',
         password: process.env.PASSWORD,
         database: 'project_scheduler',
