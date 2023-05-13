@@ -5,10 +5,6 @@
 /tmp
 /out-tsc
 /bazel-out
-/database
-/build/database/
-keys.js
-keys.js.map
 
 
 # Node
