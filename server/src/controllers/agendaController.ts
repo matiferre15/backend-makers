@@ -10,6 +10,9 @@ class AgendaController{
     }
 
     public async  getByUserId (req: Request, res: Response) {
+        res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         const { id } = req.params;
         const [agenda] = await pool.promise().query('SELECT reuniones.nombre, reuniones.fecha FROM reuniones ' + 
         'INNER JOIN participantes on participantes.reunion_id = reuniones.id INNER JOIN usuarios on participantes.usuario_id = usuarios.id ' +
