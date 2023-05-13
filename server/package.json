@@ -8,7 +8,7 @@
     "clean": "rm -rf build",
     "compile": "tsc",
     "dev": "nodemon build/src/index.js",
-    "serve": "node build/src/index.js" 
+    "start": "node build/src/index.js" 
   },
   "keywords": [],
   "author": "",
